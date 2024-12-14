@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "uploaded_documents",
+  "info": {
+    "singularName": "uploaded-document",
+    "pluralName": "uploaded-documents",
+    "displayName": "Uploaded Document",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "client": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::client.client"
+    },
+    "document_type": {
+      "type": "enumeration",
+      "enum": [
+        "payment_slip",
+        "submission_slip",
+        "releasing_date",
+        "work_permit",
+        "invitation",
+        "offer_letter"
+      ]
+    },
+    "agent": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "document": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "document_status": {
+      "type": "enumeration",
+      "enum": [
+        "processing",
+        "approved",
+        "rejected"
+      ],
+      "default": "processing"
+    }
+  }
+}
