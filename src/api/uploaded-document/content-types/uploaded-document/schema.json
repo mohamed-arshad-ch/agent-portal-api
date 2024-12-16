@@ -52,6 +52,13 @@
         "rejected"
       ],
       "default": "processing"
+    },
+    "paidAmount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "releasingDate": {
+      "type": "date"
     }
   }
 }

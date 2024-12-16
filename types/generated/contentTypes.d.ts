@@ -1,101 +1,5 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
-export interface ApiClientClient extends Struct.CollectionTypeSchema {
-  collectionName: 'clients';
-  info: {
-    singularName: 'client';
-    pluralName: 'clients';
-    displayName: 'Client';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    agent_id: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    name: Schema.Attribute.String;
-    passport: Schema.Attribute.String;
-    passport_document: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    passportsize_photo: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    client_status: Schema.Attribute.Enumeration<['active', 'deactive']> &
-      Schema.Attribute.DefaultTo<'active'>;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::client.client'
-    > &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiUploadedDocumentUploadedDocument
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'uploaded_documents';
-  info: {
-    singularName: 'uploaded-document';
-    pluralName: 'uploaded-documents';
-    displayName: 'Uploaded Document';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    client: Schema.Attribute.Relation<'oneToOne', 'api::client.client'>;
-    document_type: Schema.Attribute.Enumeration<
-      [
-        'payment_slip',
-        'submission_slip',
-        'releasing_date',
-        'work_permit',
-        'invitation',
-        'offer_letter',
-      ]
-    >;
-    agent: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    document: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    document_status: Schema.Attribute.Enumeration<
-      ['processing', 'approved', 'rejected']
-    > &
-      Schema.Attribute.DefaultTo<'processing'>;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::uploaded-document.uploaded-document'
-    > &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files';
   info: {
@@ -591,6 +495,134 @@ export interface PluginUsersPermissionsUser
   };
 }
 
+export interface ApiClientClient extends Struct.CollectionTypeSchema {
+  collectionName: 'clients';
+  info: {
+    singularName: 'client';
+    pluralName: 'clients';
+    displayName: 'Client';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    agent_id: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    name: Schema.Attribute.String;
+    passport: Schema.Attribute.String;
+    passport_document: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    passportsize_photo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    client_status: Schema.Attribute.Enumeration<['active', 'deactive']> &
+      Schema.Attribute.DefaultTo<'active'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::client.client'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLeadLead extends Struct.CollectionTypeSchema {
+  collectionName: 'leads';
+  info: {
+    singularName: 'lead';
+    pluralName: 'leads';
+    displayName: 'Lead';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    fullName: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    phoneNumber: Schema.Attribute.String;
+    serviceType: Schema.Attribute.Enumeration<
+      ['job_visa', 'visa_service', 'mbbs_admission']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::lead.lead'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUploadedDocumentUploadedDocument
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'uploaded_documents';
+  info: {
+    singularName: 'uploaded-document';
+    pluralName: 'uploaded-documents';
+    displayName: 'Uploaded Document';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    client: Schema.Attribute.Relation<'oneToOne', 'api::client.client'>;
+    document_type: Schema.Attribute.Enumeration<
+      [
+        'payment_slip',
+        'submission_slip',
+        'releasing_date',
+        'work_permit',
+        'invitation',
+        'offer_letter',
+      ]
+    >;
+    agent: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    document: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    document_status: Schema.Attribute.Enumeration<
+      ['processing', 'approved', 'rejected']
+    > &
+      Schema.Attribute.DefaultTo<'processing'>;
+    paidAmount: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    releasingDate: Schema.Attribute.Date;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::uploaded-document.uploaded-document'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -963,8 +995,6 @@ export interface AdminTransferTokenPermission
 declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
-      'api::client.client': ApiClientClient;
-      'api::uploaded-document.uploaded-document': ApiUploadedDocumentUploadedDocument;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -975,6 +1005,9 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::client.client': ApiClientClient;
+      'api::lead.lead': ApiLeadLead;
+      'api::uploaded-document.uploaded-document': ApiUploadedDocumentUploadedDocument;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;
