@@ -545,6 +545,7 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     singularName: 'lead';
     pluralName: 'leads';
     displayName: 'Lead';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -556,6 +557,18 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     serviceType: Schema.Attribute.Enumeration<
       ['job_visa', 'visa_service', 'mbbs_admission']
     >;
+    stage: Schema.Attribute.Enumeration<
+      [
+        'new',
+        'contacted',
+        'interested',
+        'qualified',
+        'in-progress',
+        'closed won',
+        'closed lost',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'new'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
