@@ -16,10 +16,12 @@
       "type": "string"
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "unique": true
     },
     "phoneNumber": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "serviceType": {
       "type": "enumeration",

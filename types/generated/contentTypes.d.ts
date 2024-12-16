@@ -552,8 +552,8 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
   };
   attributes: {
     fullName: Schema.Attribute.String;
-    email: Schema.Attribute.Email;
-    phoneNumber: Schema.Attribute.String;
+    email: Schema.Attribute.Email & Schema.Attribute.Unique;
+    phoneNumber: Schema.Attribute.String & Schema.Attribute.Unique;
     serviceType: Schema.Attribute.Enumeration<
       ['job_visa', 'visa_service', 'mbbs_admission']
     >;
