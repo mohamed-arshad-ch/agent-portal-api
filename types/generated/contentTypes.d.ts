@@ -569,6 +569,7 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
       ]
     > &
       Schema.Attribute.DefaultTo<'new'>;
+    city: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

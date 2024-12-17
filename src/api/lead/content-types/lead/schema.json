@@ -43,6 +43,9 @@
         "closed lost"
       ],
       "default": "new"
+    },
+    "city": {
+      "type": "string"
     }
   }
 }
