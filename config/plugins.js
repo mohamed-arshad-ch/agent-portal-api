@@ -10,10 +10,12 @@ module.exports = ({ env }) => ({
             params: {
               Bucket: env('AWS_BUCKET_NAME'),
             },
+            sizeLimit: 100000000,
           },
         },
         actionOptions: {
-          upload: {},
+          upload: {
+          },
           uploadStream: {},
           delete: {},
         },

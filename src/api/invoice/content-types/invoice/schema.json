@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "invoice",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "invoiceNumber": {
+      "type": "string",
+      "unique": true
+    },
+    "subscription_plan": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subscription-plan.subscription-plan"
+    },
+    "dueDate": {
+      "type": "date"
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "paid",
+        "unpaid"
+      ],
+      "default": "unpaid"
+    },
+    "transactionStatus": {
+      "type": "enumeration",
+      "enum": [
+        "processing",
+        "approved",
+        "rejected"
+      ],
+      "default": "processing"
+    },
+    "clientName": {
+      "type": "string"
+    },
+    "clientAddress": {
+      "type": "text"
+    },
+    "paymentLink": {
+      "type": "text"
+    },
+    "paymentId": {
+      "type": "string"
+    }
+  }
+}
