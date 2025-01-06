@@ -369,6 +369,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAppListAppList extends Struct.CollectionTypeSchema {
+  collectionName: 'app_lists';
+  info: {
+    description: '';
+    displayName: 'app list';
+    pluralName: 'app-lists';
+    singularName: 'app-list';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    appId: Schema.Attribute.String & Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::app-list.app-list'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    subscribed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    subscription_plan: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::subscription-plan.subscription-plan'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiClientClient extends Struct.CollectionTypeSchema {
   collectionName: 'clients';
   info: {
@@ -378,7 +413,7 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
     singularName: 'client';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     agent_id: Schema.Attribute.Relation<
@@ -466,7 +501,7 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
     singularName: 'lead';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     city: Schema.Attribute.String;
@@ -548,7 +583,7 @@ export interface ApiUploadedDocumentUploadedDocument
     singularName: 'uploaded-document';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     agent: Schema.Attribute.Relation<
@@ -1101,6 +1136,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::app-list.app-list': ApiAppListAppList;
       'api::client.client': ApiClientClient;
       'api::invoice.invoice': ApiInvoiceInvoice;
       'api::lead.lead': ApiLeadLead;

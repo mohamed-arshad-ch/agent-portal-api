@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "app_lists",
+  "info": {
+    "singularName": "app-list",
+    "pluralName": "app-lists",
+    "displayName": "app list",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "appId": {
+      "type": "string",
+      "unique": true
+    },
+    "subscribed": {
+      "type": "boolean",
+      "default": false
+    },
+    "subscription_plan": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subscription-plan.subscription-plan"
+    }
+  }
+}
